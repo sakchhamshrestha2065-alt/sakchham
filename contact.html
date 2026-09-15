@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sakchham Shrestha | Contact</title>
+    <link rel="stylesheet" href="p.css" />
+    <style>
+      .share-box {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .share-box input {
+        width: 100%;
+      }
+
+      .copy-btn {
+        background: linear-gradient(135deg, #ff3b30, #ff7b54);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav container">
+        <div class="brand">Sakchham Shrestha</div>
+        <div class="menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="goals.html">Goals</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html" class="active">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero container">
+        <p class="eyebrow">Contact</p>
+        <h1>Get in Touch</h1>
+      </section>
+
+      <section class="section container">
+        <div class="contact-box">
+          <p><strong>Email:</strong> sakchhamshrestha@gmail.com</p>
+
+          <div class="share-box">
+            <input type="text" id="shareLink" value="" readonly />
+            <button class="copy-btn" onclick="copyCurrentLink()">Copy Link</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Sakchham Shrestha</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const shareInput = document.getElementById("shareLink");
+        if (shareInput) {
+          shareInput.value = window.location.href;
+        }
+      });
+
+      function copyCurrentLink() {
+        const shareInput = document.getElementById("shareLink");
+        if (!shareInput) return;
+
+        shareInput.focus();
+        shareInput.select();
+
+        try {
+          navigator.clipboard.writeText(shareInput.value);
+          const button = document.querySelector(".copy-btn");
+          if (button) {
+            const originalText = button.textContent;
+            button.textContent = "Copied!";
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 1200);
+          }
+        } catch (err) {
+          alert("Copy failed. Please copy the link manually.");
+        }
+      }
+    </script>
+  </body>
+</html>
